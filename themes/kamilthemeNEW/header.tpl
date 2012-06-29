@@ -74,9 +74,12 @@
 				<a id="header_logo" href="{$link->getPageLink('index.php')}" title="{$shop_name|escape:'htmlall':'UTF-8'}">
 					<img class="logo" src="{$img_ps_dir}logo.jpg?{$img_update_time}" alt="{$shop_name|escape:'htmlall':'UTF-8'}" {if $logo_image_width}width="{$logo_image_width}"{/if} {if $logo_image_height}height="{$logo_image_height}" {/if} />
 				</a>
+				{*  ------------PRIDAN OBRAZEK S TEXTEM DO HLAVICKY--------   *}
 				<div id="header_right">
+					 <div id="header-text">Jediný hodinářský e-shop v ČR s garantovaným servisem.<span></span></div> 
 					{$HOOK_TOP}
 				</div>
+				
 			</div>
 
 			<div id="columns">
