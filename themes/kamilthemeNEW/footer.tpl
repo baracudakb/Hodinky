@@ -27,10 +27,7 @@
 		{if !$content_only}
 				</div>
 
-<!-- Right -->
-				<div id="right_column" class="column">
-					{$HOOK_RIGHT_COLUMN}
-				</div>
+
 			</div>
 
 <!-- Footer -->
