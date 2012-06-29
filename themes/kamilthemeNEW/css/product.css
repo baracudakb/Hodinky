@@ -1,16 +1,29 @@
 
 /* product.tpl */
 #primary_block #pb-right-column {
+	width: 310px;
 	float: left;
-	width: 10em;
-	margin-left: 0.8em;
-	margin-top:0;
+	border-right:#cccccc 1px dashed;	
+}
+
+#primary_block{
+	background:#fff;
+	color:#333333;
+}
+
+#primary_block h1{
+	color:#000;
+	font-size:16px;
+	display:inline-block;
+	padding:0 0 0 10px;
+	text-transform:none;
 }
 
 #primary_block #image-block {
-	border: #d0d1d5 solid 1px;
+	border: #d0d1d5 solid 0px;
 	height: 300px;
-	width: 300px
+	width: 300px;
+	padding-top:15px;
 }
 #primary_block #image-block img#bigpic { 
 	cursor: pointer; 
@@ -33,12 +46,12 @@
 	height: 15px
 }
 #primary_block #pb-left-column {
-	float: right;
-	margin-left: 1.1em;
-	width: 233px
+	float: left;
+	width: 375px;
+	padding-top:5px;
 }
 #primary_block #short_description_block {
-	background: #e5e6e7 url('../img/product-short-desc-bg.gif') repeat-x top left;
+	background: #fff;
 	border: 1px #d0d3d8 solid;
 	padding: 0.7em;
 	margin-bottom: 1.5em
@@ -68,25 +81,50 @@
 #primary_block a.color_pick:hover { border: 1px solid #000 }
 #primary_block a#color_all { cursor: pointer }
 #primary_block #image-block img#bigpic.jqzoom {
-	cursor: crosshair;
+	cursor: pointer;
 	position: relative
 }
+
+/*	 
 #primary_block p.buttons_bottom_block { margin: 0 }
 #primary_block p.buttons_bottom_block a,
- #primary_block p.buttons_bottom_block input { margin: 0.9em auto 0 auto }
+ #primary_block p.buttons_bottom_block input { 
+ 	margin: 0.9em auto 0 auto;
+	background:url("../img/button_buy_bg.png") repeat-x scroll 0 0 transparent !important;
+	height:28px;
+	padding:5px
+	
+	 }
+	 
+	 */
+	 
+	 
+#primary_block p.buttons_bottom_block { margin: 0 }
+#primary_block p.buttons_bottom_block a,
+ #primary_block p.buttons_bottom_block input { 
+ 	margin: 0em auto 0 auto;
+	background:url("../img/koupit.png") no-repeat scroll 0 0 transparent !important;
+	height:49px;
+	padding:0 0 7px 8px;
+	float:right;
+	
+	 }	 
+	 
+	 
+	 
+	 
 #primary_block #short_description_content { margin-bottom: 0.5em }
 #primary_block #buy_block {
-	background: #f1f2f4 url('../img/product-buy-bg.gif') repeat-x top left;
+	/*background: #f1f2f4 url('../img/product-buy-bg.gif') repeat-x top left;
+	border: 1px #d0d3d8 solid;*/
 	font-size: 1.1em;
 	padding: 0.7em;
 	color: #374853;
-	border: 1px #d0d3d8 solid;
 	margin-bottom: 1.5em
 }
 #primary_block #buy_block p {
 	padding: 0;
 	margin-top: 0;
-	clear: both
 }
 #primary_block #buy_block img.on_sale_img { float: left }
 #primary_block #buy_block span.on_sale {
@@ -101,7 +139,10 @@
 	font-weight: bold;
 	float: right
 }
-#primary_block #buy_block span.our_price_display { float: right }
+#primary_block #buy_block p.our_price_display {
+	float: left;
+	margin-top:0.7em;
+}
 #primary_block #buy_block span#availability_label {
 	float: left;
 	margin-right: 1em
@@ -123,8 +164,8 @@
 
 /* prices */
 #primary_block #buy_block p.price {
-	font-size: 1.05em;
-	text-align: right
+	font-size: 1.5em;
+	float: left;
 }
 #primary_block #buy_block span#pretaxe_price {
 	font-size: 0.75em;
@@ -132,7 +173,7 @@
 }
 #primary_block #buy_block p#old_price {
 	font-size: 0.8em;
-	text-align: right;
+	text-align: left;
 	text-decoration: line-through
 }
 #primary_block #buy_block p#reduction_percent {

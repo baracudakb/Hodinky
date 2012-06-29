@@ -1,16 +1,17 @@
 /* Block categories */
-#categories_block_left .tree { padding-left: 0.5em }
+#categories_block_left .tree { padding-left: 0em }
 #categories_block_left .tree li {
 	border: none;
 	padding-top: 5px;
-	padding-left: 15px;
-	background: none;
+	padding-left: 30px;
+	padding-bottom:20px;
+	background: url(../../../img/category-menu-bg.png) no-repeat bottom left;
 	margin-left: 0;
 	font-weight: bold;
-	font-size: 13px;
-	line-height: 13px
+	font-size: 12px;
+	line-height: 12px
 }
-#categories_block_left .tree li.last { padding-bottom: 0 }
+#categories_block_left .tree li.last { padding-bottom: 10px; background:none }
 #categories_block_left .tree ul { padding: 2px 0 0 }
 #categories_block_left .tree li li {
 	padding: 1px 0 1px 15px;
@@ -25,9 +26,9 @@
 }
 #categories_block_left .tree a {
 	padding-left: 0;
-	color: #374853
+	color: #fff
 }
-#categories_block_left .tree a:hover { text-decoration: none }
+#categories_block_left .tree a:hover { text-decoration: underline }
 #categories_block_left ul.tree a.selected {
 	color: #488c40;
 	font-weight: bold

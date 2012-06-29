@@ -1,0 +1,5 @@
+{shop_name}
+Tento produkt bude brzy vyprodán:
+Ref: {product_ref}
+ID: {product_id}
+Mnoz.: {qty}

@@ -1,0 +1,5 @@
+{shop_name}
+Zakaznik: {firstname} {lastname}
+Objednavka: {order_name}
+Platba: {payment}
+Celkem: ({total_paid} {currency})

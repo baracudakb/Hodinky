@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>cashondeliverywithfee</name>
+	<displayName>Cash on delivery with fee (COD)</displayName>
+	<version>1.0</version>
+	<description>Accept cash on delivery payments with extra fee</description>
+	<tab>payments_gateways</tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+</module>

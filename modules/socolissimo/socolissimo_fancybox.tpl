@@ -1,0 +1,217 @@
+{*
+* 2007-2012 PrestaShop
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@prestashop.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+* versions in the future. If you wish to customize PrestaShop for your
+* needs please refer to http://www.prestashop.com for more information.
+*
+*  @author PrestaShop SA <contact@prestashop.com>
+*  @copyright  2007-2012 PrestaShop SA
+*  @version  Release: $Revision: 6735 $
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*  International Registered Trademark & Property of PrestaShop SA
+*}
+
+<style type="text/css">
+	.soBackward_compat_tab {literal}{ text-align: center; }{/literal}
+	.soBackward_compat_tab a {literal}{ margin: 10px; }{/literal}
+</style>
+
+<a href="#" class="iframe" style="display:none" id="soLink"></a>
+{if isset($opc) && $opc}
+<script type="text/javascript">
+	var opc = true;
+</script>
+{else}
+<script type="text/javascript">
+	var opc = false;
+</script>
+{/if}
+{if isset($already_select_delivery) && $already_select_delivery}
+<script type="text/javascript">
+	var already_select_delivery = true;
+</script>
+{else}
+<script type="text/javascript">
+	var already_select_delivery = false;
+</script>
+{/if}
+<script type="text/javascript">
+var soInputs = new Object();
+var soBwdCompat = "{$SOBWD_C}";
+var soCarrierId = "{$id_carrier}";
+var soToken = "{$token}";
+
+{foreach from=$inputs item=input key=name name=myLoop}
+		soInputs.{$name} = "{$input|strip_tags|addslashes}";
+{/foreach}
+
+{literal}
+	$('#soLink').fancybox({
+			'width'				: 1000,
+			'height'			: 700,
+		    'autoScale'     	: false,
+		    'centerOnScroll'	: true,
+		    'autoDimensions'	: false,
+		    'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'hideOnOverlayClick' : false,
+			'hideOnContentClick' : false,
+			'showCloseButton'	: true,
+			'showIframeLoading' : true,
+			'enableEscapeButton' : true,
+			'type'				: 'iframe',
+			onStart: function () {
+				$('#soLink').attr('href', 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+			},
+			onClosed    :   function() {
+         	   $.ajax({
+			       type: 'GET',
+			       url: baseDir+'/modules/socolissimo/ajax.php',
+			       async: false,
+			       cache: false,
+			       dataType : "json",
+			       data: "token=" + soToken,
+			       success: function(jsonData)
+			       {
+			       		if (jsonData && typeof jsonData.answer != undefined && !opc)
+					      {
+						      if (jsonData.answer)
+							      $('#form').submit();
+						      else if (jsonData.msg.length)
+						        alert(jsonData.msg);
+					      }
+			       },
+			       error: function(XMLHttpRequest, textStatus, errorThrown)
+				   {
+				   		alert('TECHNICAL ERROR\nDetails:\nError thrown: ' + XMLHttpRequest + '\n' + 'Text status: ' + textStatus);
+				   }
+			   });
+        	}
+				});
+		$(document).ready(function() 
+		{	
+			var interval;	
+
+			// 1.4 way
+			if (!soBwdCompat)
+			{
+				$('input[name=id_carrier]').change(function() {
+					so_click();	
+				});
+				so_click();
+			}
+			// 1.5 way
+			else if (soCarrierId)
+				so_click();
+		});
+		
+	
+	function so_click() 
+	{
+		if (opc)
+		{
+			if (!already_select_delivery)
+				interval = setInterval(function()
+					{
+						modifyCarrierLine(false);
+					},10);
+					
+			else if (!$('#edit_socolissimo').length)
+				interval = setInterval(function()
+					{
+						modifyCarrierLine(true);
+					},10);
+		}
+		else if ((!soBwdCompat && $('#id_carrier' + soCarrierId).is(':not(:checked)')) ||
+			(soBwdCompat && soCarrierId == 0))
+		{
+			$('[name=processCarrier]').unbind('click').click(function () {
+				return true;
+			});
+		}
+		else
+		{
+			$('[name=processCarrier]').unbind('click').click(function () {
+				if (acceptCGV())				
+					$("#soLink").trigger("click");
+				return false;
+			})
+		}
+	}
+
+function modifyCarrierLine(edit)
+{
+	var container = '#id_carrier' + soCarrierId;
+
+	if (soBwdCompat && soCarrierId > 0)
+	{
+		var carrier_block = $('input[class=delivery_option_radio]:checked').parent('div.delivery_option');
+	
+			// Simulate 1.4 table to store the fetched relay point 
+			$(carrier_block).append(
+				'<div><table width="' + $(carrier_block).width() + '"><tr>'
+					+	  '<td class="soBackward_compat_tab"><input type="hidden" id="id_carrier' + soCarrierId + '" value="' + soCarrierId + '" /></td>'
+					+ '</tr></table></div>');
+	}
+
+	if ($('#button_socolissimo').length != 0)
+	{
+		clearInterval(interval);
+		// delete interval value
+		interval = null;
+	}
+	
+	$('#button_socolissimo').remove();
+
+	if (edit && $('input[name=id_carrier]:checked').attr('value') == soCarrierId)
+		$(container).parent().prepend('<a style="margin-left:5px;" class="button" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$edit_label}{literal}</a>');
+	else
+		$(container).parent().prepend('<a style="margin-left:5px;" class="exclusive" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a>');
+
+	if (already_select_delivery)
+	{
+		$(container).css('display', 'block');
+		$(container).css('margin', 'auto');
+		$(container).css('margin-top', '5px');
+	}
+	else
+		$(container).css('display', 'none');
+}
+
+function redirect()
+{
+	document.location.href = '{/literal}{$urlSo}{literal}'+serialiseInput(soInputs);
+}
+
+function serialiseInput(inputs)
+{
+	updateGiftData();
+	soInputs.TRPARAMPLUS = soInputs.carrier_id + '|' + soInputs.gift + '|' + soInputs.gift_message;
+	var str = '?firstcall=1&';
+	for ( var cle in inputs )
+   		str += cle + '=' + inputs[cle] + '&';
+   	
+	return str;
+}
+
+function updateGiftData()
+{
+	soInputs.gift = ($('#gift').attr('checked') ? '1' : '0' );
+	soInputs.gift_message = $('#gift_message').attr('value');
+}
+
+{/literal}
+</script>

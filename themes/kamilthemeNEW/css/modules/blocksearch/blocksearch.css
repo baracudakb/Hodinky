@@ -1,21 +1,34 @@
 /* block top search */
 #header_right #search_block_top {
 	float: right;
-	background: #e5e6e7 url('../../../img/block_search_bg.jpg') no-repeat top right;
-	margin-bottom: 11px;
+	background: #DEDEDE;
+	margin-bottom: -19px;
 	width: 336px;
-	height: 28px
+	height: 40px;
+	position:relative;
+	top:-5px;
+	left:1px
 }
-#header_right #search_block_top p { padding: 0.4em 0 0.4em 1em }
+#header_right #search_block_top p { padding: 0.4em 0 0.4em 0.5em }
 #header_right #search_block_top label, #header_right #search_block_top input { float: left }
-#header_right #search_block_top label {
+#header_right #search_block_top ladbel {
 	background: transparent url('../../../img/icon/search.gif') no-repeat 0 2px;
 	float: left;
 	width: 19px;
 	height: 18px;
 	display: block
 }
-#header_right #search_block_top input.search_query { width: 12em }
+#header_right #search_block_top input.search_query { 
+	width: 13em;
+	height:23px;
+	margin-top:3px;
+}
+#header_right #search_block_top .button { 
+	float: left;
+	height:23px;
+	background: url(../../../img/search_bg.png) repeat-x left top;
+	margin-top:4px;
+}
 
 
 /* block left column "Quick search" */
