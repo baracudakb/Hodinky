@@ -31,7 +31,9 @@ if (!defined('_PS_VERSION_'))
 class Editorial extends Module
 {
 	/** @var max image size */
-	protected $maxImageSize = 307200;
+	
+	/*  ----- ZVETSENA MAXIMALNI VELIKOST  ------- */
+	protected $maxImageSize = 507200;
 
 	public function __construct()
 	{

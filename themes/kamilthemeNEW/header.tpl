@@ -86,6 +86,21 @@
 				<!-- Left -->
 				<div id="left_column" class="column">
 					{$HOOK_LEFT_COLUMN}
+					
+					{*  ---------PRIDAN RYCHLY KONTAKT A VYHODY----------    *}
+					<div id="rychly_kontakt">
+						<h2>Kontakty</h2>
+						<span id="ico_telefon">+420 723 970 957 </span>
+						<span id="ico_mail"><a href="mailto:info@hodinky-kaspar.cz">info@hodinky-kaspar.cz</a> </span>
+						<span id="ico_fb"><a href="http://www.facebook.com/HodinkyKaspar" title="Facebook hodinky-kaspar.cz">fb.com/HodinkyKaspar</a></span>
+					</div>
+					<div id="vyhody">
+						<h2>Proč nakupovat u nás?</h2>
+						<span id="ico_vcas">Poštovné ZDARMA</span>
+						<span id="ico_servis">Garantovaný servis</span>
+						<span id="ico_prodejna">Kamenná prodejna</span>
+					</div>
+				</div>
 				</div>
 
 				<!-- Center -->
